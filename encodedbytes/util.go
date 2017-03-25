@@ -6,7 +6,6 @@ package encodedbytes
 import (
 	"bytes"
 	"errors"
-	iconv "github.com/djimenez/iconv-go"
 )
 
 const (
@@ -28,15 +27,15 @@ var (
 		{Name: "UTF-16BE", NullLength: 2},
 		{Name: "UTF-8", NullLength: 1},
 	}
-	Decoders = make([]*iconv.Converter, len(EncodingMap))
-	Encoders = make([]*iconv.Converter, len(EncodingMap))
+	Decoders = make([]*Converter, len(EncodingMap))
+	Encoders = make([]*Converter, len(EncodingMap))
 )
 
 func init() {
 	n := EncodingForIndex(NativeEncoding)
 	for i, e := range EncodingMap {
-		Decoders[i], _ = iconv.NewConverter(e.Name, n)
-		Encoders[i], _ = iconv.NewConverter(n, e.Name)
+		Decoders[i], _ = NewConverter(e.Name, n)
+		Encoders[i], _ = NewConverter(n, e.Name)
 	}
 }
 

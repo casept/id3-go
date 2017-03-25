@@ -5,7 +5,7 @@ package id3
 
 import (
 	"bytes"
-	v2 "github.com/mikkyang/id3-go/v2"
+	v2 "github.com/casept/id3-go/v2"
 	"io"
 	"io/ioutil"
 	"os"
@@ -49,7 +49,7 @@ func TestOpen(t *testing.T) {
 	actual := resultFrame.Description()
 
 	if expected != actual {
-		t.Errorf("Expected %q, got %q", expected, actual)
+		t.Errorf("Expected %x, got %x", expected, actual)
 	}
 
 	actual = resultFrame.Text()
